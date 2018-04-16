@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author xiongyan
  * @date 2018年1月15日 下午6:04:10
  */
-@Component
+//@Component
 @Slf4j
 public class HttpServer {
 	
