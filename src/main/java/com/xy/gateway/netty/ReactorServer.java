@@ -1,4 +1,4 @@
-package com.xy.gateway.reactor;
+package com.xy.gateway.netty;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -13,6 +13,8 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
+import com.xy.gateway.reactor.ReactorHandler;
+
 import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 import reactor.ipc.netty.http.server.HttpServer;
@@ -23,7 +25,7 @@ import reactor.ipc.netty.http.server.HttpServer;
  * @author xiongyan
  * @date 2018年1月15日 下午6:04:10
  */
-@Component
+//@Component
 @Slf4j
 public class ReactorServer {
 

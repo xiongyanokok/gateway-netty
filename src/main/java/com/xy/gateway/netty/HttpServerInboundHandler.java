@@ -26,7 +26,7 @@ import reactor.ipc.netty.http.client.HttpClientResponse;
  * @author xiongyan
  * @date 2018年1月10日 上午10:20:09
  */
-@Component
+//@Component
 @Sharable
 @Slf4j
 public class HttpServerInboundHandler extends SimpleChannelInboundHandler<HttpRequest> {
