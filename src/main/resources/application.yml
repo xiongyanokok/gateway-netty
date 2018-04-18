@@ -1,9 +1,16 @@
 spring:
   application:
     name: gateway-netty
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss 
+    time-zone: GMT+8
     
 server:
   port: 8000
 
 logging:
-  config: classpath:logback.xml  
+  config: classpath:logback.xml
+  
+feign:
+  hystrix:
+    enabled: true  

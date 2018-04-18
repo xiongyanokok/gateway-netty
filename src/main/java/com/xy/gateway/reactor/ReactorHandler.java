@@ -10,7 +10,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import lombok.Data;
+import com.xy.gateway.pojo.User;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -18,9 +19,8 @@ import reactor.core.publisher.Mono;
 public class ReactorHandler {
 
 	public Mono<ServerResponse> forward(ServerRequest request) {
-		System.out.println(request.uri());
-		Mono<String> result = WebClient.create("http://test.apicaidao.hexun.com")
-				.get().uri("/article/search?keyword=量化")
+		Mono<String> result = WebClient.create("https://www.baidu.com")
+				.get().uri("/s?wd=熊焱")
 				.accept(MediaType.APPLICATION_JSON_UTF8).retrieve()
 				.bodyToMono(String.class)
 				.timeout(Duration.ofMillis(100))
@@ -54,9 +54,4 @@ public class ReactorHandler {
 		return Flux.just(user, user, user);
 	}
 	
-	@Data
-	class User {
-		private String name;
-		private String pass;
-	}
 }
