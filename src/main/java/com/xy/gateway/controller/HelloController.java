@@ -1,17 +1,15 @@
 package com.xy.gateway.controller;
 
-import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hexun.es.pojo.ArticleQueryRequest;
+import com.alibaba.dubbo.rpc.service.GenericService;
 import com.xy.gateway.pojo.Result;
 import com.xy.gateway.pojo.User;
 
@@ -45,14 +43,12 @@ public class HelloController {
 	
 	@GetMapping("/search")
 	public Mono<Result<Object>> search() {
-		ArticleQueryRequest request = new ArticleQueryRequest();
-		request.setKeyword("史月波");
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", "史月波");
 		
-		// spring 反射工具类 
-		Object target = SpringContextUtils.getBean("searchArticleService");
-        Method method = ReflectionUtils.findMethod(target.getClass(), "searchList", null);
-        Object result = ReflectionUtils.invokeMethod(method, target, request);
-        
+		// 直接调用dubbo的通用服务
+		GenericService service = (GenericService) SpringContextUtils.getBean("searchArticleService");
+		Object result = service.$invoke("searchList", new String[]{"com.hexun.es.pojo.ArticleQueryRequest"}, new Object[]{map});
 		return Mono.just(Result.success(result));
 	}
 	

@@ -74,12 +74,6 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.hexun</groupId>
-			<artifactId>es-interface</artifactId>
-			<version>1.2.9</version>
-		</dependency>
-		
-		<dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <version>2.8.4</version>

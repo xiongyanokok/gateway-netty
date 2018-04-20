@@ -23,19 +23,15 @@ public class InitDubbo implements ApplicationListener<ContextRefreshedEvent> {
 
 		// 连接注册中心配置
 		RegistryConfig registry = new RegistryConfig();
-		registry.setProtocol("zookeeper"); // 必须
-		registry.setAddress("10.0.202.63:2181,10.0.202.63:2182"); // 必须
+		registry.setAddress("zookeeper://127.0.0.1:2181"); // 必须
 
 		// 引用远程服务
 		ReferenceConfig<?> reference = new ReferenceConfig<>();
 		reference.setApplication(application); // 必须
 		reference.setRegistry(registry); // 必须
-		//reference.setId("searchArticleService");
-		try {
-			reference.setInterface(Class.forName("com.hexun.es.service.SearchArticleService")); // 必须
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		reference.setId("searchArticleService");
+		reference.setInterface("com.hexun.es.service.SearchArticleService"); // 必须
+		reference.setGeneric(true);
 		reference.setProtocol("dubbo"); // 必须
 		reference.setCheck(true);
 		reference.setTimeout(5000);
